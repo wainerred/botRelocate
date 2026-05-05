@@ -964,7 +964,7 @@
                         <label for="details">Дополнительная информация</label>
                         <textarea id="details" name="details" placeholder="На каком языке написан бот? Есть ли база данных? Какие проблемы испытываете сейчас?"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-large form-submit">Отправить заявку</button>
+                    <button type="submit" class="btn btn-primary btn-large form-submit" id="form-submit-btn">Отправить заявку</button>
                 </form>
             </div>
         </div>
@@ -1009,8 +1009,13 @@
     </footer>
 
     <script>
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            const submitButton = document.getElementById('form-submit-btn');
+            const form = this;
+
+            submitButton.textContent = 'Отправляю...';
+            submitButton.disabled = true;
 
             const formData = {
                 name: document.getElementById('name').value,
@@ -1020,10 +1025,35 @@
                 timestamp: new Date().toISOString()
             };
 
-            console.log('Заявка получена:', formData);
-            alert('Заявка принята, ответ в течение часа');
+            const description = [
+                'Нагрузка: ' + formData.load,
+                formData.details ? 'Дополнительно: ' + formData.details : '',
+                'Время отправки: ' + formData.timestamp
+            ].filter(Boolean).join('\n');
 
-            this.reset();
+            try {
+                const response = await fetch('https://telegram-bot-proxy.wainerred.workers.dev/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        contact: formData.contact,
+                        description
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Request failed');
+                }
+
+                submitButton.textContent = 'Заявка отправлена, ответим в течение часа';
+                submitButton.style.background = 'var(--success)';
+                form.reset();
+            } catch (error) {
+                submitButton.textContent = 'Ошибка отправки. Напишите нам в Telegram';
+                submitButton.style.background = '#ef4444';
+                submitButton.disabled = false;
+            }
         });
 
         // Smooth scroll for anchor links
