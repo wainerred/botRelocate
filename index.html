@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Миграция Ваших Telegram-ботов — Переезд на зарубежные серверы</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         * {
             margin: 0;
@@ -611,6 +612,14 @@
             margin-top: 8px;
         }
 
+        .captcha-wrap {
+            min-height: 66px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 8px 0 4px;
+        }
+
         /* Footer */
         .footer {
             background: var(--dark);
@@ -964,6 +973,9 @@
                         <label for="details">Дополнительная информация</label>
                         <textarea id="details" name="details" placeholder="На каком языке написан бот? Есть ли база данных? Какие проблемы испытываете сейчас?"></textarea>
                     </div>
+                    <div class="captcha-wrap">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAADJ-0lywVZatr414" data-theme="light"></div>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-large form-submit" id="form-submit-btn">Отправить заявку</button>
                 </form>
             </div>
@@ -1024,6 +1036,13 @@
                 details: document.getElementById('details').value,
                 timestamp: new Date().toISOString()
             };
+            const token = document.querySelector('#contact [name="cf-turnstile-response"]')?.value;
+
+            if (!token) {
+                submitButton.textContent = 'Подтвердите, что вы не робот';
+                submitButton.disabled = false;
+                return;
+            }
 
             const description = [
                 'Нагрузка: ' + formData.load,
@@ -1038,7 +1057,8 @@
                     body: JSON.stringify({
                         name: formData.name,
                         contact: formData.contact,
-                        description
+                        description,
+                        turnstileToken: token
                     })
                 });
 
@@ -1049,10 +1069,12 @@
                 submitButton.textContent = 'Заявка отправлена, ответим в течение часа';
                 submitButton.style.background = 'var(--success)';
                 form.reset();
+                if (window.turnstile) window.turnstile.reset();
             } catch (error) {
                 submitButton.textContent = 'Ошибка отправки. Напишите нам в Telegram';
                 submitButton.style.background = '#ef4444';
                 submitButton.disabled = false;
+                if (window.turnstile) window.turnstile.reset();
             }
         });
 
