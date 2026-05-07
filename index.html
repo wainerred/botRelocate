@@ -440,6 +440,59 @@
             line-height: 1.6;
         }
 
+        .trust-section,
+        .metrics-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .trust-grid,
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .trust-card,
+        .metric-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .trust-card:hover,
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #bfdbfe;
+        }
+
+        .trust-card h3,
+        .metric-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .trust-card p,
+        .metric-card p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .trust-note,
+        .metric-note {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            color: var(--primary-dark);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
         /* Why Us */
         .why-us {
             padding: 80px 0;
@@ -776,17 +829,16 @@
             <div class="hero-grid">
                 <div class="hero-content">
                     <div class="badges">
-                        <span class="badge badge-blue">🌍 Работаем с РФ и СНГ</span>
-                        <span class="badge badge-green">✓ Без посредников</span>
+                        <span class="badge badge-blue">🌍 Business Continuity для ботов</span>
+                        <span class="badge badge-green">✓ Доступ к global API</span>
                     </div>
-                    <h1>Миграция Telegram-ботов <span>на зарубежные серверы</span></h1>
+                    <h1>Переносим Telegram-ботов <span>на стабильную зарубежную инфраструктуру</span></h1>
                     <p class="hero-subtitle">
-                        Восстановим стабильную работу ваших ботов. Перенесём код, настроим инфраструктуру и запустим 
-                        на надёжных зарубежных хостингах — берём все технические задачи на себя.
+                        Не просто перевозим сервер, а возвращаем боту рабочий доступ к Telegram API, OpenAI, Stripe и другим внешним сервисам. Берём на себя инфраструктуру, деплой, мониторинг и запуск без костылей.
                     </p>
                     <div class="hero-cta">
                         <a href="#contact" class="btn btn-primary btn-large">Заказать бесплатный расчёт</a>
-                        <a href="#services" class="btn btn-outline btn-large">Что входит в услугу</a>
+                        <a href="#metrics" class="btn btn-outline btn-large">Что улучшаем после переезда</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -825,7 +877,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>С какими проблемами сталкиваются владельцы ботов</h2>
-                <p>Нестабильность российской инфраструктуры для Telegram API приводит к потере клиентов и прибыли</p>
+                <p>Проблема уже шире, чем просто блокировки: страдают продажи, интеграции, AI-функции и скорость ответа пользователю</p>
             </div>
             <div class="problems-grid">
                 <div class="problem-card">
@@ -848,6 +900,42 @@
                     <h3>Нет своего DevOps</h3>
                     <p>Некому быстро разобраться в инфраструктуре, настроить прокси или перенести сервер в другое место.</p>
                 </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🧠</div>
+                    <h3>Ломаются AI и SaaS-интеграции</h3>
+                    <p>OpenAI, Stripe, зарубежные CRM и другие critical API работают нестабильно или через временные обходы.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📉</div>
+                    <h3>Падает конверсия в диалогах</h3>
+                    <p>Чем медленнее бот отвечает, тем выше число брошенных сценариев, потерь лидов и негатива от клиентов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics-section" id="metrics">
+        <div class="container">
+            <div class="section-header">
+                <h2>Что меняется после переезда</h2>
+                <p>Речь не о формальной миграции, а о восстановлении рабочего канала продаж, поддержки и автоматизации</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Нормальный доступ к Telegram и внешним API</h3>
+                    <p>Убираем зависимость от нестабильных прокси и временных решений. Бот снова может стабильно работать с critical integrations.</p>
+                    <div class="metric-note">OpenAI, Stripe, CRM, webhook-сценарии</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Снижение задержек и таймаутов</h3>
+                    <p>Подбираем локацию под Telegram API и вашу аудиторию, чтобы уменьшить latency, packet loss и число “подвисших” диалогов.</p>
+                    <div class="metric-note">Latency, timeout rate, response time</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Управляемая инфраструктура вместо ручных костылей</h3>
+                    <p>Настраиваем репозиторий, деплой, мониторинг, rollback и базовые процессы восстановления, чтобы бот не зависел от одного человека.</p>
+                    <div class="metric-note">CI/CD, alerts, backups, health checks</div>
+                </div>
             </div>
         </div>
     </section>
@@ -857,7 +945,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Что входит в услугу</h2>
-                <p>Полный цикл миграции под ключ — от аудита кода до запуска в продакшене</p>
+                <p>Полный цикл миграции под ключ — от аудита кода до запуска в продакшене и контроля стабильности после релиза</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
@@ -878,17 +966,48 @@
                 <div class="service-card">
                     <div class="service-number">04</div>
                     <h3>Аренда хостинга под ключ</h3>
-                    <p>Подбираем и оплачиваем зарубежный VPS или облачный сервер под вашу нагрузку. Регистрация, оплата, первичная настройка — всё берём на себя.</p>
+                    <p>Подбираем и оплачиваем зарубежный VPS или облачный сервер под вашу нагрузку, стек и внешние API. Регистрация, оплата, первичная настройка — всё берём на себя.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-number">05</div>
                     <h3>Перенос и запуск</h3>
-                    <p>Разворачиваем бота на новом хосте, мигрируем базы данных, настраиваем домены и SSL. Проводим полное тестирование работоспособности.</p>
+                    <p>Разворачиваем бота на новом хосте, мигрируем базы данных, настраиваем домены и SSL. Проверяем Telegram API, webhook, AI и платёжные интеграции.</p>
                 </div>
                 <div class="service-card" style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe;">
                     <div class="service-number" style="background: var(--primary-dark);">+</div>
                     <h3>Пост-миграционная поддержка</h3>
-                    <p><strong>3 дня бесплатной поддержки</strong> после запуска. Помогаем с мелкими доработками, отвечаем на вопросы, следим за стабильностью.</p>
+                    <p><strong>3 дня бесплатной поддержки</strong> после запуска. Следим за стабильностью, разбираем ошибки и убеждаемся, что бот не теряет лиды после переезда.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Локации серверов и логика выбора</h2>
+                <p>Не ставим бота на первый попавшийся VPS. Выбираем регион под Telegram API, внешние сервисы и реальную нагрузку проекта</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h3>Нидерланды</h3>
+                    <p>Часто подходят для ботов с европейской аудиторией, webhook-нагрузкой и большим количеством SaaS-интеграций.</p>
+                    <div class="trust-note">Частый выбор для latency-sensitive сценариев</div>
+                </div>
+                <div class="trust-card">
+                    <h3>Германия</h3>
+                    <p>Хороший вариант для стабильной бизнес-инфраструктуры, понятного VPS-стека и проектов с повышенными требованиями к предсказуемости.</p>
+                    <div class="trust-note">Подходит для business-critical ботов</div>
+                </div>
+                <div class="trust-card">
+                    <h3>США и глобальные регионы</h3>
+                    <p>Используем, когда бот критично зависит от зарубежных AI API, биллинга, интеграций с несколькими внешними платформами.</p>
+                    <div class="trust-note">Подбираем под OpenAI, платежи и внешние API</div>
+                </div>
+                <div class="trust-card">
+                    <h3>Резерв и контроль</h3>
+                    <p>Сразу проектируем мониторинг, алерты и понятный сценарий восстановления, чтобы переезд реально повышал устойчивость бизнеса.</p>
+                    <div class="trust-note">Это уже не “релокация”, а непрерывность бизнеса</div>
                 </div>
             </div>
         </div>
@@ -899,7 +1018,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Почему именно мы</h2>
-                <p>Работаем с бизнесом, у которого нет собственного IT-отдела</p>
+                <p>Работаем с бизнесом, у которого нет собственного IT-отдела, но есть жёсткая зависимость от стабильности бота</p>
             </div>
             <div class="why-grid">
                 <div class="why-card">
@@ -914,8 +1033,8 @@
                 </div>
                 <div class="why-card">
                     <div class="why-icon">🌐</div>
-                    <h3>Помощь с доменами и прокси</h3>
-                    <p>Настроим Webhook, подключим прокси при необходимости, поможем с DNS и SSL-сертификатами.</p>
+                    <h3>Смотрим на весь стек, а не только на сервер</h3>
+                    <p>Проверяем Webhook, DNS, SSL, внешние API, AI-сервисы и другие места, где обычно и прячется настоящая причина сбоев.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">🤝</div>
@@ -930,12 +1049,12 @@
     <section class="pricing">
         <div class="container">
             <h2>Стоимость миграции</h2>
-            <p class="pricing-subtitle">Индивидуальный расчёт под вашего бота</p>
+            <p class="pricing-subtitle">Индивидуальный расчёт под вашего бота, инфраструктуру и критичные интеграции</p>
             <div class="pricing-card">
                 <div class="pricing-label">Под ключ</div>
                 <p class="pricing-desc">
-                    Стоимость зависит от сложности бота, объёма данных и требуемой инфраструктуры. 
-                    Оставьте заявку — рассчитаем точную цену и сроки в течение часа.
+                    Стоимость зависит от сложности бота, объёма данных, числа интеграций и требуемой инфраструктуры.
+                    Оставьте заявку — рассчитаем цену, сроки и подскажем, какие риски мешают стабильной работе уже сейчас.
                 </p>
                 <a href="#contact" class="btn btn-primary btn-large" style="background: white; color: var(--primary);">Заказать расчёт стоимости</a>
             </div>
@@ -947,7 +1066,7 @@
         <div class="container">
             <div class="form-container">
                 <h2>Заказать бесплатный расчёт</h2>
-                <p class="subtitle">Расскажите о вашем боте — подготовим план и смету</p>
+                <p class="subtitle">Расскажите о вашем боте — подготовим план миграции, оценим риски и подскажем, где именно теряется стабильность</p>
                 <form id="leadForm">
                     <div class="form-group">
                         <label for="name">Ваше имя</label>
